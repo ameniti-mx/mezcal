@@ -1,0 +1,14 @@
+Mezcal 0.1.0
+Copyright (c) 2026 Ameniti
+
+This project is inspired by and contains adaptations of ideas and code from:
+
+  cuenca-mx/cep-python
+  Copyright (c) 2019 Cuenca
+  https://github.com/cuenca-mx/cep-python
+
+The upstream project is distributed under the MIT License. Its copyright and
+permission notice are preserved in this repository's LICENSE file.
+
+Mezcal is an independent, unofficial project. Banco de México and SPEI are
+not affiliated with or responsible for this software.
