@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CEP FechaOperacion="2026-07-27" sello="SELLO-DE-PRUEBA" numeroCertificado="CERT-001" cadenaCDA="X|Y|1|Z|27072026|103045|RESTO">
+  <Ordenante Nombre="PERSONA DE PRUEBA" TipoCuenta="40" BancoEmisor="40012" Cuenta="NA" RFC="NA" />
+  <Beneficiario Nombre="COMERCIO DE PRUEBA" TipoCuenta="40" BancoReceptor="40072" Cuenta="012345678901234567" RFC="XAXX010101000" IVA="0.00" Concepto="PAGO DE PRUEBA" />
+</CEP>
