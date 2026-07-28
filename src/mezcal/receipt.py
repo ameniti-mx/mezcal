@@ -1,15 +1,23 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Protocol
 
 from .constants import DownloadFormat
 from .models import CEPQuery, Transfer
 
 
+class _ReceiptSession(Protocol):
+    def download(self, format: DownloadFormat) -> bytes:
+        ...
+
+
 class CEPReceipt:
     """Resultado validado, ligado a la sesión que permite descargar el CEP."""
 
-    def __init__(self, *, query: CEPQuery, transfer: Transfer, session: object) -> None:
+    def __init__(
+        self, *, query: CEPQuery, transfer: Transfer, session: _ReceiptSession
+    ) -> None:
         self.query = query
         self.transfer = transfer
         self._session = session
@@ -18,23 +26,34 @@ class CEPReceipt:
         return self.transfer.public_dict()
 
     def download(self, format: str | DownloadFormat = DownloadFormat.PDF) -> bytes:
-        parsed = format if isinstance(format, DownloadFormat) else DownloadFormat.parse(format)
-        downloader = getattr(self._session, "download")
-        return downloader(parsed)
+        parsed = (
+            format
+            if isinstance(format, DownloadFormat)
+            else DownloadFormat.parse(format)
+        )
+        return self._session.download(parsed)
 
     def save(
         self,
         destination: str | Path,
         format: str | DownloadFormat = DownloadFormat.PDF,
     ) -> Path:
-        parsed = format if isinstance(format, DownloadFormat) else DownloadFormat.parse(format)
+        parsed = (
+            format
+            if isinstance(format, DownloadFormat)
+            else DownloadFormat.parse(format)
+        )
         path = Path(destination)
         if path.is_dir():
             safe_key = "".join(
                 char if char.isalnum() or char in "-_" else "_"
                 for char in self.query.clave_rastreo
             )
-            path = path / f"CEP-{self.query.fecha.isoformat()}-{safe_key}.{parsed.extension}"
+            filename = (
+                f"CEP-{self.query.fecha.isoformat()}-"
+                f"{safe_key}.{parsed.extension}"
+            )
+            path = path / filename
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(self.download(parsed))
         return path
