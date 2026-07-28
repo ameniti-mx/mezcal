@@ -49,7 +49,7 @@ def fetch_banks(*, timeout: float = DEFAULT_TIMEOUT_SECONDS) -> list[Bank]:
         if results:
             return sorted(results, key=lambda bank: bank.name.casefold())
     except (httpx.HTTPError, ValueError):
-        pass
+        return list(FALLBACK_BANKS)
     return list(FALLBACK_BANKS)
 
 
