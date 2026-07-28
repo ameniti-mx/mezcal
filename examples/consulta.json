@@ -1,0 +1,12 @@
+{
+  "fecha": "2026-07-27",
+  "clave_rastreo": "CLAVE-DE-RASTREO",
+  "emisor": "40012",
+  "receptor": "40072",
+  "cuenta_beneficiaria": "012345678901234567",
+  "monto": {
+    "value": "2500.00",
+    "currency": "MXN"
+  },
+  "pago_a_banco": false
+}
