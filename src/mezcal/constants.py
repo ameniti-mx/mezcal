@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from enum import StrEnum
+from enum import Enum
 
 BASE_URL = "https://www.banxico.org.mx/cep"
 BETA_BASE_URL = "https://www.banxico.org.mx/cep-beta"
@@ -27,7 +27,7 @@ NOT_AVAILABLE_MARKERS = (
 )
 
 
-class DownloadFormat(StrEnum):
+class DownloadFormat(str, Enum):
     PDF = "PDF"
     XML = "XML"
     ZIP = "ZIP"
