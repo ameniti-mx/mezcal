@@ -1,0 +1,10 @@
+services:
+  mezcal:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      MEZCAL_API_KEY: ${MEZCAL_API_KEY:-cambia-esto}
+      MEZCAL_RATE_LIMIT_PER_MINUTE: ${MEZCAL_RATE_LIMIT_PER_MINUTE:-10}
+      MEZCAL_MAX_CONCURRENCY: ${MEZCAL_MAX_CONCURRENCY:-1}
+    restart: unless-stopped
