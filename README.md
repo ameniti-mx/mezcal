@@ -1,1 +1,1 @@
-# mezcal 🫗
+# mezcal 🧊
